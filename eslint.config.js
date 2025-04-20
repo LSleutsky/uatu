@@ -160,14 +160,6 @@ export default [
         }
       ],
       'prefer-const': 'error',
-      quotes: [
-        2,
-        'backtick',
-        {
-          allowTemplateLiterals: true,
-          avoidEscape: true
-        }
-      ],
       'react/jsx-no-undef': 'error',
       'react/jsx-sort-props': [
         'error',

@@ -5,8 +5,8 @@ import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } f
 import { auth } from '~/lib/firebase';
 
 export default function Login() {
-  const [email, setEmail] = useState(``);
-  const [password, setPassword] = useState(``);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export default function Login() {
       await setPersistence(auth, browserLocalPersistence);
       await signInWithEmailAndPassword(auth, email, password);
 
-      navigate(`/`);
+      navigate('/');
     } catch (err: any) {
       console.error(err);
       setError(err.message);
@@ -25,8 +25,8 @@ export default function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button onClick={handleLogin}>Login</button>
       {error && <p>{error}</p>}
     </div>
