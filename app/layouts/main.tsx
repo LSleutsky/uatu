@@ -4,7 +4,7 @@ import ThemeToggle from '~/components/ThemeToggle';
 
 import { ThemeProvider } from '~/context/ThemeContext';
 
-import { AuthProvider } from '../lib/auth';
+import { AuthProvider } from '~/lib/auth';
 
 export default function MainLayout() {
   return (
