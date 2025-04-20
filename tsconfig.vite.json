@@ -5,7 +5,8 @@
     "app/**/*",
     "app/**/.server/**/*",
     "app/**/.client/**/*",
-    "server/**/*"
+    "server/**/*",
+    "firebase.ts"
   ],
   "compilerOptions": {
     "composite": true,
