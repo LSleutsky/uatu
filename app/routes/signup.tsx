@@ -5,6 +5,7 @@ import {
   setPersistence,
   browserLocalPersistence
 } from 'firebase/auth';
+
 import { auth } from '~/lib/firebase';
 
 export default function Signup() {
