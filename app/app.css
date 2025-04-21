@@ -4,11 +4,45 @@
 
 @theme {
   --font-sans:
-    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Work Sans', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 html,
 body {
   height: 100%;
+}
+
+:root {
+  --background: #f5f7ff; /* page background */
+  --surface: #ffffff; /* cards, modals */
+  --primary: #6a0dad; /* primary buttons background, links */
+  --secondary: #007fff; /* secondary buttons background */
+  --text-primary: #0d0d1a; /* headings, body text, button text */
+  --text-secondary: #4f4f80; /* subtext, labels */
+  --border: #d1d5e0; /* borders, dividers */
+  --highlight: #a855f7; /* hover, focus rings */
+  --code-background: #f0f4ff; /* code blocks */
+  --code-text: #2d2d5a; /* code blocks */
+  --error: #d32f2f; /* error messages */
+  --success: #388e3c; /* success messages */
+  --warning: #ffa000; /* warning messages */
+  --info: #0288d1; /* info messages */
+}
+
+.dark {
+  --background: #0a0a1f;
+  --surface: #1c1c3a;
+  --primary: #8a2be2;
+  --secondary: #00ffff;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0c0;
+  --border: #2d2d5a;
+  --highlight: #d946ef;
+  --code-bg: #13132b;
+  --code-text: #e0e0ff;
+  --error: #ff4c4c;
+  --success: #00d977;
+  --warning: #ffb020;
+  --info: #00bfff;
 }
