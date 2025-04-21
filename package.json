@@ -1,6 +1,12 @@
 {
-  "name": "uatime",
+  "name": "uatu",
   "private": true,
+  "author": "Lush Sleutsky <lushsleutsky@gmail.com>",
+  "description": "A geolocation-based web app that allows scheduling technicians based on dates, times, and location.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LSleutsky/uatu"
+  },
   "type": "module",
   "scripts": {
     "build": "react-router build",
@@ -28,6 +34,7 @@
     "morgan": "^1.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.0",
     "react-router": "^7.5.1"
   },
   "devDependencies": {

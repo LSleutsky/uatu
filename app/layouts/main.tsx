@@ -10,14 +10,14 @@ export default function MainLayout() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <main className="min-h-screen flex flex-col flex-auto bg-[var(--background)]">
-          <header className="py-4">
-            <div className="flex justify-between items-center px-4">
+        <main className="min-h-screen flex flex-col bg-[var(--background)] p-4">
+          <header className="">
+            <div className="flex justify-between items-center">
               <h1 className="font-['Gloria_Hallelujah'] text-5xl text-[var(--text-primary)]">Uatu</h1>
               <ThemeToggle />
             </div>
           </header>
-          <div className="flex flex-col flex-auto">
+          <div className="flex flex-col justify-center flex-1">
             <Outlet />
           </div>
           <footer className="text-blue-700 dark:text-white"></footer>
