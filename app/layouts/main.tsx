@@ -10,10 +10,10 @@ export default function MainLayout() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <main className="min-h-screen flex flex-col bg-[var(--background)] p-4">
+        <main className="min-h-screen flex flex-col bg-(--background) p-4">
           <header className="">
             <div className="flex justify-between items-center">
-              <h1 className="font-['Gloria_Hallelujah'] text-5xl text-[var(--text-primary)]">Uatu</h1>
+              <h1 className="font-['Gloria_Hallelujah'] text-5xl text-(--primary)">Uatu</h1>
               <ThemeToggle />
             </div>
           </header>

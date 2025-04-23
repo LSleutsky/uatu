@@ -14,35 +14,30 @@ body {
 }
 
 :root {
-  --background: #f5f7ff; /* page background */
-  --surface: #ffffff; /* cards, modals */
-  --primary: #6a0dad; /* primary buttons background, links */
-  --secondary: #007fff; /* secondary buttons background */
-  --text-primary: #0d0d1a; /* headings, body text, button text */
-  --text-secondary: #4f4f80; /* subtext, labels */
-  --border: #d1d5e0; /* borders, dividers */
-  --highlight: #a855f7; /* hover, focus rings */
-  --code-background: #f0f4ff; /* code blocks */
-  --code-text: #2d2d5a; /* code blocks */
-  --error: #d32f2f; /* error messages */
-  --success: #388e3c; /* success messages */
-  --warning: #ffa000; /* warning messages */
-  --info: #0288d1; /* info messages */
+  --background: #f3f4f9;   /* app shell background */
+  --surface: #eaeaf2;      /* cards, modals, headers, footers, sidebars, elevated elements */
+  --primary: #4b5dff;      /* primary buttons, links, icons, cta highlights */
+  --secondary: #a94eff;    /* secondary buttons, tags, badges, focus rings, hover states */
+  --accent: #ffa34d;       /* highlights, floating action buttons (fabs), charts, callouts, active states */
+  --muted: #c9cbe1;        /* subtle text, placeholder text, dividers, secondary labels */
+  --text: #1b1d3c;         /* main body text, titles, headers, paragraphs */
+  --border: #dadbea;       /* component borders, input outlines, card dividers, separator lines */
+  --success: #1e9e6a;      /* success text */
+  --warning: #d18c00;      /* warning text */
+  --error: #d12356;        /* error text */
 }
 
+/* dark mode */
 .dark {
-  --background: #0a0a1f;
-  --surface: #1c1c3a;
-  --primary: #8a2be2;
-  --secondary: #00ffff;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0c0;
-  --border: #2d2d5a;
-  --highlight: #d946ef;
-  --code-bg: #13132b;
-  --code-text: #e0e0ff;
-  --error: #ff4c4c;
-  --success: #00d977;
-  --warning: #ffb020;
-  --info: #00bfff;
+  --background: #0d0f1e;   /* app shell background */
+  --surface: #1b1d2f;      /* cards, modals, headers, footers, sidebars, elevated elements */
+  --primary: #778bff;      /* primary buttons, links, icons, cta highlights */
+  --secondary: #c278ff;    /* secondary buttons, tags, badges, focus rings, hover states */
+  --accent: #ffb366;       /* highlights, floating action buttons (fabs), charts, callouts, active states */
+  --muted: #5c5f77;        /* subtle text, placeholder text, dividers, secondary labels */
+  --text: #e3e4f1;         /* main body text, titles, headers, paragraphs */
+  --border: #2a2d44;       /* component borders, input outlines, card dividers, separator lines */
+  --success: #6fffb8;      /* success text */
+  --warning: #ffce5c;       /* warning text */
+  --error: #ff6b8a;        /* error text */
 }
