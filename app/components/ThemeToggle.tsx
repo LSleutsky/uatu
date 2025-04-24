@@ -30,7 +30,7 @@ const ThemeToggleSwitch = styled(Switch)(() => ({
     }
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: useTheme().theme === `dark` ? `#da70d6` : `#191970`,
+    backgroundColor: useTheme().theme === `dark` ? `#a94eff` : `#1b1d2f`,
     width: 32,
     height: 32,
     '&::before': {

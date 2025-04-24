@@ -1,7 +1,7 @@
-import { use, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Controller, useForm } from 'react-hook-form'
-import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
 
 import Container from "@mui/material/Container";
 import FormGroup from "@mui/material/FormGroup";
@@ -11,19 +11,26 @@ import Button from '~/components/Button';
 import { useTheme } from '~/context/ThemeContext';
 
 import { auth } from '~/lib/firebase';
+import { formValidationRules } from '~/utils';
 
 export type SignupFormInputs = {
   email: string;
   password: string;
 };
 
-const commonInputStyles = (theme: 'dark' | 'light') => {
-  const errorStyle = `${theme === 'dark' ? '#d12356' : '#ff6b8a'}`;
+const commonInputStyles = (theme: 'dark' | 'light', error: boolean) => {
+  const errorStyle = `${theme === 'dark' ? '#ff6b8a' : '#d12356'}`;
   const inputStyle = `${theme === 'dark' ? '#778bff' : '#4b5dff'}`;
 
   return {
+    '& .MuiFormHelperText-root': {
+      color: errorStyle,
+      '&.Mui-error': {
+        color: errorStyle
+      }
+    },
     '& .MuiInputBase-input': {
-      color: inputStyle
+      color: error ? errorStyle : inputStyle
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
@@ -55,30 +62,55 @@ const commonInputStyles = (theme: 'dark' | 'light') => {
 };
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { theme } = useTheme();
 
-  const { control } = useForm<SignupFormInputs>({
+  const {
+    clearErrors,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<SignupFormInputs>({
     defaultValues: {
       email: '',
       password: ''
     },
-    mode: `onTouched`,
-    reValidateMode: `onSubmit`
+    mode: 'onTouched',
+    reValidateMode: 'onSubmit'
   });
 
-  const handleLogin = async () => {
+  const firebaseError = (code: string): string => {
+    switch (code) {
+      case 'auth/invalid-credential':
+        return 'Invalid username and/or password';
+      case 'auth/invalid-email':
+        return 'Please enter a valid email address';
+      case 'auth/user-not-found':
+        return 'No account found with this email';
+      case 'auth/wrong-password':
+        return 'Incorrect password. Please try again';
+      case 'auth/too-many-requests':
+        return 'Too many failed attempts. Try again later';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your connection';
+      default:
+        return 'Something went wrong. Please try again';
+    }
+  }
+
+  const handleLogin = async (data: SignupFormInputs) => {
     try {
+      setError(null);
+
       await setPersistence(auth, browserLocalPersistence);
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
 
       navigate('/');
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      console.error(err.message);
+
+      setError(firebaseError(err.code));
     }
   };
 
@@ -96,55 +128,58 @@ export default function Login() {
               width: '100%'
             }
           }}
+          onSubmit={handleSubmit(handleLogin)}
         >
-          <FormGroup className="w-1/3">
+          <FormGroup>
             <Controller
               control={control}
               name="email"
-              render={({ field }: any) => (
+              render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
                   id="email"
                   label="Email"
-                  name="email"
-                  sx={{
-                    ...commonInputStyles(theme)
-                  }}
-                  type="text"
-                  value={email}
+                  sx={commonInputStyles(theme, !!errors.email)}
                   onChange={event => {
                     field.onChange(event);
-                    setEmail(event.target.value);
+                    clearErrors('email');
                   }}
                 />
               )}
+              rules={formValidationRules('email')}
             />
             <Controller
               control={control}
               name="password"
-              render={({ field }: any) => (
+              render={({ field }) => (
                 <TextField
                   {...field}
+                  fullWidth
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
                   id="password"
                   label="Password"
-                  name="password"
-                  sx={{
-                    marginTop: 2,
-                    ...commonInputStyles(theme)
-                  }}
+                  sx={{ marginTop: 2, ...commonInputStyles(theme, !!errors.password) }}
                   type="password"
-                  value={password}
                   onChange={event => {
                     field.onChange(event);
-                    setPassword(event.target.value);
+                    clearErrors('password');
                   }}
                 />
               )}
+              rules={formValidationRules('password')}
             />
           </FormGroup>
-          <footer>
-            <Button title="Submit" />
+          <footer className="mt-4 w-full">
+            <Button title="Submit" type="submit" />
+            {error && (
+              <p className="text-sm mt-4 text-(--error)">
+                {error}
+              </p>
+            )}
           </footer>
         </Container>
       </div>
