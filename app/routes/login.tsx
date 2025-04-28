@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Controller, useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router';
+import { Controller, useForm } from 'react-hook-form';
 import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
 
-import Container from "@mui/material/Container";
-import FormGroup from "@mui/material/FormGroup";
-import TextField from "@mui/material/TextField";
+import Container from '@mui/material/Container';
+import FormGroup from '@mui/material/FormGroup';
+import TextField from '@mui/material/TextField';
 
 import Button from '~/components/Button';
 import { useTheme } from '~/context/ThemeContext';
@@ -13,7 +13,7 @@ import { useTheme } from '~/context/ThemeContext';
 import { auth } from '~/lib/firebase';
 import { formValidationRules } from '~/utils';
 
-export type SignupFormInputs = {
+export type FormInputs = {
   email: string;
   password: string;
 };
@@ -34,18 +34,18 @@ const commonInputStyles = (theme: 'dark' | 'light', error: boolean) => {
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: inputStyle,
+        borderColor: inputStyle
       },
       '&:hover fieldset': {
-        borderColor: inputStyle,
+        borderColor: inputStyle
       },
       '&.Mui-focused fieldset': {
-        borderColor: inputStyle,
+        borderColor: inputStyle
       },
       '&.Mui-error': {
         '& .MuiOutlinedInput-notchedOutline': {
           border: `2px solid ${errorStyle}`
-        },
+        }
       }
     },
     '& label': {
@@ -58,7 +58,7 @@ const commonInputStyles = (theme: 'dark' | 'light', error: boolean) => {
         color: errorStyle
       }
     }
-  }
+  };
 };
 
 export default function Login() {
@@ -71,7 +71,7 @@ export default function Login() {
     control,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignupFormInputs>({
+  } = useForm<FormInputs>({
     defaultValues: {
       email: '',
       password: ''
@@ -97,9 +97,9 @@ export default function Login() {
       default:
         return 'Something went wrong. Please try again';
     }
-  }
+  };
 
-  const handleLogin = async (data: SignupFormInputs) => {
+  const handleLogin = async (data: FormInputs) => {
     try {
       setError(null);
 
@@ -115,14 +115,14 @@ export default function Login() {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center">
-      <div className="w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)">
-        <header className="flex justify-center">
-          <h2 className="text-4xl text-(--primary)">Login</h2>
+    <section className='flex flex-col justify-center items-center'>
+      <div className='w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)'>
+        <header className='flex justify-center'>
+          <h2 className='text-4xl text-(--primary)'>Login</h2>
         </header>
         <Container
-          className="flex flex-col justify-center items-center mt-6"
-          component="form"
+          className='flex flex-col justify-center items-center mt-6'
+          component='form'
           sx={{
             '& .MuiFormGroup-root': {
               width: '100%'
@@ -133,15 +133,15 @@ export default function Login() {
           <FormGroup>
             <Controller
               control={control}
-              name="email"
+              name='email'
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
                   error={!!errors.email}
                   helperText={errors.email?.message}
-                  id="email"
-                  label="Email"
+                  id='email'
+                  label='Email'
                   sx={commonInputStyles(theme, !!errors.email)}
                   onChange={event => {
                     field.onChange(event);
@@ -153,17 +153,17 @@ export default function Login() {
             />
             <Controller
               control={control}
-              name="password"
+              name='password'
               render={({ field }) => (
                 <TextField
                   {...field}
                   fullWidth
                   error={!!errors.password}
                   helperText={errors.password?.message}
-                  id="password"
-                  label="Password"
+                  id='password'
+                  label='Password'
                   sx={{ marginTop: 2, ...commonInputStyles(theme, !!errors.password) }}
-                  type="password"
+                  type='password'
                   onChange={event => {
                     field.onChange(event);
                     clearErrors('password');
@@ -173,13 +173,16 @@ export default function Login() {
               rules={formValidationRules('password')}
             />
           </FormGroup>
-          <footer className="mt-4 w-full">
-            <Button title="Submit" type="submit" />
-            {error && (
-              <p className="text-sm mt-4 text-(--error)">
-                {error}
-              </p>
-            )}
+          <div className='mt-4 text-(--muted) text-sm'>
+            {`Don't have an account? Click `}
+            <Link className='text-(--primary)' to='/signup'>
+              here
+            </Link>
+            {` to register.`}
+          </div>
+          <footer className='mt-4 w-full'>
+            <Button title='Login' type='submit' />
+            {error && <p className='text-sm mt-4 text-(--error)'>{error}</p>}
           </footer>
         </Container>
       </div>

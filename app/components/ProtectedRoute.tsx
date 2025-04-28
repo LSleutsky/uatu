@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactElem
   const user = useAuth();
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to='/login' />;
   }
 
   return children;

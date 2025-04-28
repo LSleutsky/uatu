@@ -1,5 +1,5 @@
 {
-  "avoidParens": true,
+  "arrowParens": "avoid",
   "semi": true,
   "tabWidth": 2,
   "printWidth": 100,
@@ -7,5 +7,5 @@
   "trailingComma": "none",
   "jsxSingleQuote": true,
   "bracketSpacing": true,
-  "insertFinalNewline": true
+  "endOfLine": "lf"
 }

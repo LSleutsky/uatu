@@ -9,11 +9,12 @@ export default function Button({ disabled, onClick, title, type = 'button' }: Bu
   return (
     <button
       className={`
-        ${disabled
-          ? `border border-(--disabled-border) bg-(--disabled-background) text-(--disabled-text)`
-          : `border border-(--border) bg-(--primary) text-(--surface) hover:bg-(--accent)`
+        ${
+          disabled
+            ? `border border-(--disabled-border) bg-(--disabled-background) text-(--disabled-text)`
+            : `border border-(--border) bg-(--primary) text-(--surface) hover:bg-(--accent)`
         }
-        mt-10 p-3 rounded-lg cursor-pointer
+        p-3 rounded-lg cursor-pointer
       `}
       disabled={disabled}
       type={type}

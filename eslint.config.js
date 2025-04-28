@@ -25,7 +25,7 @@ export default [
       'plugin:@typescript-eslint/recommended',
       'prettier'
     )
-    .map((config) => ({
+    .map(config => ({
       ...config,
       files: ['app/**/*.ts', 'app/**/*.tsx']
     })),
