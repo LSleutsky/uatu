@@ -20,6 +20,7 @@ export default [
   ...compat
     .extends(
       'eslint:recommended',
+      'plugin:prettier/recommended',
       'plugin:react/recommended',
       'plugin:react-hooks/recommended',
       'plugin:@typescript-eslint/recommended',
@@ -58,6 +59,7 @@ export default [
     rules: {
       camelcase: 2,
       'eol-last': ['error', 'always'],
+      'jsx-quotes': ['error', 'prefer-double'],
       'no-console': [
         'error',
         {

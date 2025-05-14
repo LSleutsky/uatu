@@ -29,10 +29,10 @@ export default function Signup() {
   };
 
   return (
-    <section className='flex flex-col justify-center items-center'>
-      <div className='w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)'>
-        <header className='flex justify-center'>
-          <h2 className='text-4xl text-(--primary)'>Register</h2>
+    <section className="flex flex-col justify-center items-center">
+      <div className="w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)">
+        <header className="flex justify-center">
+          <h2 className="text-4xl text-(--primary)">Register</h2>
         </header>
         <LoginSignup handleFormSubmit={handleSignup} />
       </div>

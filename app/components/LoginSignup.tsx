@@ -83,8 +83,8 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
 
   return (
     <Container
-      className='flex flex-col justify-center items-center mt-6'
-      component='form'
+      className="flex flex-col justify-center items-center mt-6"
+      component="form"
       sx={{
         '& .MuiFormGroup-root': {
           width: '100%'
@@ -95,15 +95,15 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
       <FormGroup>
         <Controller
           control={control}
-          name='email'
+          name="email"
           render={({ field }) => (
             <TextField
               {...field}
               fullWidth
               error={!!errors.email}
               helperText={errors.email?.message}
-              id='email'
-              label='Email'
+              id="email"
+              label="Email"
               sx={commonInputStyles(theme, !!errors.email)}
               onChange={event => {
                 field.onChange(event);
@@ -115,17 +115,17 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
         />
         <Controller
           control={control}
-          name='password'
+          name="password"
           render={({ field }) => (
             <TextField
               {...field}
               fullWidth
               error={!!errors.password}
               helperText={errors.password?.message}
-              id='password'
-              label='Password'
+              id="password"
+              label="Password"
               sx={{ marginTop: 2, ...commonInputStyles(theme, !!errors.password) }}
-              type='password'
+              type="password"
               onChange={event => {
                 field.onChange(event);
                 clearErrors('password');
@@ -135,15 +135,15 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
           rules={formValidationRules('password')}
         />
       </FormGroup>
-      <div className='mt-4 text-(--muted) text-sm'>
+      <div className="mt-4 text-(--muted) text-sm">
         {isLogin ? `Don't have an account? ` : 'Already have an account? '}
         {isLogin ? 'Click here to ' : 'Go to '}
-        <Link className='text-(--primary)' to={isLogin ? '/register' : '/login'}>
+        <Link className="text-(--primary)" to={isLogin ? '/register' : '/login'}>
           {isLogin ? 'register.' : 'login.'}
         </Link>
       </div>
-      <footer className='mt-4 w-full'>
-        <Button title={isLogin ? 'Login' : 'Register'} type='submit' />
+      <footer className="mt-4 w-full">
+        <Button title={isLogin ? 'Login' : 'Register'} type="submit" />
       </footer>
     </Container>
   );

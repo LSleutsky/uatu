@@ -50,14 +50,14 @@ export default function Login() {
   };
 
   return (
-    <section className='flex flex-col justify-center items-center'>
-      <div className='w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)'>
-        <header className='flex justify-center'>
-          <h2 className='text-4xl text-(--primary)'>Login</h2>
+    <section className="flex flex-col justify-center items-center">
+      <div className="w-1/2 p-6 border border-(--border) rounded-lg bg-(--surface)">
+        <header className="flex justify-center">
+          <h2 className="text-4xl text-(--primary)">Login</h2>
         </header>
         <LoginSignup handleFormSubmit={handleLogin} />
         {error && (
-          <footer className='text-(--error) mt-4 ml-6'>
+          <footer className="text-(--error) mt-4 ml-6">
             <span>{error}</span>
           </footer>
         )}
