@@ -16,6 +16,10 @@ export const formValidationRules = (field: string) => {
           message: 'Password must be at least 6 characters long'
         }
       };
+    case 'username':
+      return {
+        required: 'User Name is required'
+      };
     default:
       return undefined;
   }

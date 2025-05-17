@@ -13,6 +13,7 @@ import { formValidationRules } from '~/utils';
 export type FormInputs = {
   email: string;
   password: string;
+  username: string;
 };
 
 export type LoginSignupProps = {
@@ -75,7 +76,8 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
   } = useForm<FormInputs>({
     defaultValues: {
       email: '',
-      password: ''
+      password: '',
+      username: ''
     },
     mode: 'onTouched',
     reValidateMode: 'onSubmit'
@@ -93,6 +95,28 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
       onSubmit={handleSubmit(handleFormSubmit)}
     >
       <FormGroup>
+        {!isLogin && (
+          <Controller
+            control={control}
+            name="username"
+            render={({ field }) => (
+              <TextField
+                {...field}
+                fullWidth
+                error={!!errors.username}
+                helperText={errors.username?.message}
+                id="username"
+                label="User Name"
+                sx={commonInputStyles(theme, !!errors.username)}
+                onChange={event => {
+                  field.onChange(event);
+                  clearErrors('username');
+                }}
+              />
+            )}
+            rules={formValidationRules('username')}
+          />
+        )}
         <Controller
           control={control}
           name="email"
@@ -104,7 +128,7 @@ export default function LoginSignup({ handleFormSubmit }: LoginSignupProps) {
               helperText={errors.email?.message}
               id="email"
               label="Email"
-              sx={commonInputStyles(theme, !!errors.email)}
+              sx={{ marginTop: 2, ...commonInputStyles(theme, !!errors.email) }}
               onChange={event => {
                 field.onChange(event);
                 clearErrors('email');

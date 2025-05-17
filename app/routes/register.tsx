@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router';
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   setPersistence,
-  browserLocalPersistence
+  updateProfile
 } from 'firebase/auth';
 
 import LoginSignup from '~/components/LoginSignup';
@@ -12,6 +13,7 @@ import { auth } from '~/lib/firebase';
 export type FormInputs = {
   email: string;
   password: string;
+  username: string;
 };
 
 export default function Signup() {
@@ -19,8 +21,10 @@ export default function Signup() {
 
   const handleSignup = async (data: FormInputs) => {
     try {
+      const userCredentials = await createUserWithEmailAndPassword(auth, data.email, data.password);
+
       await setPersistence(auth, browserLocalPersistence);
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      await updateProfile(userCredentials.user, { displayName: data.username });
 
       navigate('/');
     } catch (err: any) {
